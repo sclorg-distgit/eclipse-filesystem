@@ -2,7 +2,7 @@
 %{!?scl:%global pkg_name %{name}}
 %{?java_common_find_provides_and_requires}
 
-%global baserelease 1
+%global baserelease 2
 
 %global debug_package %{nil}
 
@@ -16,6 +16,7 @@ URL:            http://www.eclipse.org/
 # javapackages-tools defines %%{_javaconfdir} macro and owns that directory
 BuildRequires:  %{?scl_prefix_java_common}javapackages-tools
 Requires:       %{?scl_prefix_java_common}javapackages-tools
+Requires:       %{?scl_prefix}runtime
 
 %description
 This package provides directories needed by the Eclipse platform and other
@@ -87,6 +88,9 @@ install -m 644 -p eclipse.conf %{buildroot}%{_javaconfdir}/
 %config(noreplace) %{_javaconfdir}/eclipse.conf
 
 %changelog
+* Mon Aug 01 2016 Mat Booth <mat.booth@redhat.com> - 1.0-7.2
+- Ensure SCL runtime package is installed
+
 * Fri Jul 22 2016 Mat Booth <mat.booth@redhat.com> - 1.0-7.1
 - Auto SCL-ise package for rh-eclipse46 collection
 
